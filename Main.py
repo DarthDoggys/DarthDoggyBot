@@ -16,8 +16,6 @@ async def change_status():
     current_status = next(msgs)
     await client.change_presence(game=discord.Game(name=current_status))
     await asyncio.sleep(5)
-    
-player = {}	
 
 @client.event
 async def on_ready():
@@ -25,6 +23,9 @@ async def on_ready():
 	print("User name:", client.user.name)
 	print("User id:", client.user.id)
 	print('---------------')
+	
+def user_is_me(ctx):
+	return ctx.message.author.id == "277983178914922497"
     
 @client.command(pass_context=True)
 async def ping(ctx):
@@ -168,14 +169,14 @@ async def giverole(ctx, user: discord.Member = None, *, name = None):
     await asyncio.sleep(5)
     await client.delete_message(text)
 
-@bot.command(name='eval', pass_context=True, hidden=True)
+@client.command(name='eval', pass_context=True, hidden=True)
 @commands.check(user_is_me)
 async def _eval(ctx, *, command):
     res = eval(command)
     if inspect.isawaitable(res):
-        await bot.say(await res)
+        await client.say(await res)
     else:
-    	await bot.say(res)
+    	await client.say(res)
 	
 client.loop.create_task(change_status())
 client.run(os.environ['BOT_TOKEN'])
