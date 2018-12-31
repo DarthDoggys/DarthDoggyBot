@@ -6,8 +6,8 @@ import time
 from itertools import cycle
 import os
 
-client = commands.Bot(command_prefix=("/"))
-status = ["testing the bot", "/help"]
+client = commands.Bot(command_prefix=("d"))
+status = ["testing the bot", "dhelp"]
 
 async def change_status():
   await client.wait_until_ready()
