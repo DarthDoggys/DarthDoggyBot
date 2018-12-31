@@ -120,7 +120,7 @@ async def addrank(ctx, *, name = None):
 	server = ctx.message.server
 	role = discord.utils.get(ctx.message.server.roles, name=name)
 	await client.create_role(server, name=name)
-	await client.say("the role has been created :thumbs_up:")
+	await client.say("the role has been created :thumbsup:")
 	
 @client.command(pass_context=True)
 @commands.has_permissions(administrator=True)
