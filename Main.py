@@ -152,7 +152,7 @@ async def removerole(ctx, user: discord.Member = None, *, name = None):
     author = ctx.message.author
     role = discord.utils.get(ctx.message.server.roles, name=name)
     await client.remove_roles(user, role)
-    text = await bot.say(f'{author.mention} I have remove the {role.name} role to a user {user.name}'.format(role.name))
+    text = await client.say(f'{author.mention} I have remove the {role.name} role to a user {user.name}'.format(role.name))
     await client.delete_message(ctx.message)
     await asyncio.sleep(5)
     await client.delete_message(text)
