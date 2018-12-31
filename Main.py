@@ -167,6 +167,15 @@ async def giverole(ctx, user: discord.Member = None, *, name = None):
     await client.delete_message(ctx.message)
     await asyncio.sleep(5)
     await client.delete_message(text)
+
+@bot.command(name='eval', pass_context=True, hidden=True)
+@commands.check(user_is_me)
+async def _eval(ctx, *, command):
+    res = eval(command)
+    if inspect.isawaitable(res):
+        await bot.say(await res)
+    else:
+    	await bot.say(res)
 	
 client.loop.create_task(change_status())
 client.run(os.environ['BOT_TOKEN'])
